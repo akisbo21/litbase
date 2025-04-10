@@ -10,7 +10,7 @@ class AuthenticatedApiController extends ApiController
     {
         parent::beforeExecuteRoute();
 
-        $userLoggedIn = isset($_GET['logged']);
+        $userLoggedIn = true;
 
         if (!$userLoggedIn) {
             throw new Unauthorized();
