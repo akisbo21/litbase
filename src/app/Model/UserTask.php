@@ -6,6 +6,8 @@ use Model\AbstractModel;
 
 class UserTask extends AbstractModel
 {
+    protected static $useStatusFilter = false;
+
     protected $user_id;
     protected $task_id;
 

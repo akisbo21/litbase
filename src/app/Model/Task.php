@@ -78,4 +78,38 @@ class Task extends AbstractModel
     {
         $this->scheduled_date = $scheduled_date;
     }
+
+    /**
+     * @return UserTask[]
+     */
+    public function getUserTasks()
+    {
+        return UserTask::findByTaskId($this->getId());
+    }
+
+    /**
+     * @return User[]
+     */
+    public function getUsers()
+    {
+        $users = [];
+        foreach ($this->getUserTasks() as $userTask) {
+            $users[] = $userTask->getUser();
+        }
+
+        return $users;
+    }
+
+    public function _toArray()
+    {
+        $return = $this->toArray();
+        $return['users'] = [];
+        $users  = $this->getUsers();
+
+        foreach ($users as $user) {
+            $return['users'][] = $user->toArray();
+        }
+
+        return $return;
+    }
 }
