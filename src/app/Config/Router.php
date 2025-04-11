@@ -20,6 +20,7 @@ class Router extends \Phalcon\Mvc\Router
         $this->add('/user-tasks', 'Controller\\UserTask::index');
 
         $this->add('/tasks', 'Controller\\Task::index');
+        $this->add('/tasks/create', 'Controller\\Task::create');
         $this->add('/tasks/{id}/edit', 'Controller\\Task::edit');
     }
 }
